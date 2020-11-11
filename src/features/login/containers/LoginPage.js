@@ -12,7 +12,6 @@ const LoginPage = () => {
   const userState = useSelector((state) => state.login.users[0]);
   const errorState = useSelector((state) => state.login.error);
 
-  let errorStatus = errorState.error;
   const submitHandler = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -72,13 +71,11 @@ const LoginPage = () => {
                     placeholder="Password"
                     value={password}
                     onChange={(event) => {
-                      errorStatus = false;
-                      console.log(errorStatus);
                       setPassword(event.target.value);
                     }}
                   />
                   <Form.Text style={{ color: "#ff4444" }}>
-                    {errorStatus ? errorState.message : ""}
+                    {errorState.error ? errorState.message : ""}
                   </Form.Text>
                 </Form.Group>
                 <Button variant="primary" type="submit" className="float-right">

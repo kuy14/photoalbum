@@ -6,7 +6,7 @@ import rootReducer from "../reducers";
 const user = JSON.parse(localStorage.getItem("userAuth"));
 console.log(user);
 const initialState = localStorage.getItem("userAuth")
-  ? { login: { users: user } }
+  ? { login: { users: user }, error: "" }
   : {};
 
 const middleware = [thunk];
