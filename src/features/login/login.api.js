@@ -12,24 +12,31 @@ export const getUserAsync = (username, password) => (dispatch, getState) => {
     endpoint =
       "https://jsonplaceholder.typicode.com/users?username=" + username;
   }
-  return axios
-    .get(endpoint)
-    .then((res) => {
-      dispatch({
-        type: "GET_USERS",
-        payload: res.data,
+  if (password === "12345") {
+    return axios
+      .get(endpoint)
+      .then((res) => {
+        dispatch({
+          type: "GET_USERS",
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: "ERROR_DATA",
+          payload: console.log(err),
+        });
+      })
+      .finally(() => {
+        dispatch({
+          type: "SET_LOADING",
+          payload: false,
+        });
       });
-    })
-    .catch((err) => {
-      dispatch({
-        type: "ERROR_DATA",
-        payload: console.log(err),
-      });
-    })
-    .finally(() => {
-      dispatch({
-        type: "SET_LOADING",
-        payload: false,
-      });
+  } else {
+    dispatch({
+      type: "ERROR_DATA",
+      payload: { error: true, message: "wrong password!" },
     });
+  }
 };

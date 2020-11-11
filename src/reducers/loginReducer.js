@@ -1,5 +1,6 @@
 const initialState = {
   users: {},
+  error: "",
   isLoading: false,
 };
 
@@ -19,6 +20,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         users: {},
+      };
+
+    case "ERROR_DATA":
+      return {
+        ...state,
+        error: action.payload,
       };
 
     default:
