@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import requiredAuth from "../../../requiredAuth/requiredAuth";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Image, Dropdown } from "react-bootstrap";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import ProfileMenu from "../../../components/profile/ProfileMenu";
 
 const AlbumPage = () => {
+  let history = useHistory();
   const stateName = useSelector((state) => state.login.users[0].name);
   const userId = useSelector((state) => state.login.users[0].id);
   const [albumState, setAlbumState] = useState([]);
@@ -33,7 +35,8 @@ const AlbumPage = () => {
     <Container>
       <Row className="justify-content-md-center">
         <Col md={10}>
-          <h4 className="text-center mt-5">{stateName}'s Photo Album</h4>
+          <h4 className="mt-5 d-inline-block">{stateName}'s Photo Album</h4>
+          <ProfileMenu />
         </Col>
         <Col md={12} className="mt-5 text-center">
           {itemAlbum.map((item) => (

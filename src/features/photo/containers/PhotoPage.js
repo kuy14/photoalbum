@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import requiredAuth from "../../../requiredAuth/requiredAuth";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Dropdown } from "react-bootstrap";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import ProfileMenu from "../../../components/profile/ProfileMenu";
 
 const PhotoPage = () => {
   const stateName = useSelector((state) => state.login.users[0].name);
@@ -34,7 +35,8 @@ const PhotoPage = () => {
     <Container>
       <Row className="justify-content-md-center">
         <Col md={10}>
-          <h4 className="text-center mt-5">Photo's</h4>
+          <h4 className="mt-5 d-inline-block">Photo's</h4>
+          <ProfileMenu />
         </Col>
         <Col md={12} className="mt-5 text-center">
           {itemPhoto.map((item) => (
@@ -46,10 +48,7 @@ const PhotoPage = () => {
                 console.log("clicked");
               }}
             >
-              <Card.Img
-                variant="top"
-                src="https://dummyimage.com/600x400/000/fff"
-              />
+              <Card.Img variant="top" src={item.thumbnailUrl} />
               <Card.Title
                 className="text-truncate p-3"
                 style={{ fontSize: "14px" }}
