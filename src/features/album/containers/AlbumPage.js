@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import requiredAuth from "../../../requiredAuth/requiredAuth";
-import { Container, Row, Col, Card, Image, Dropdown } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ProfileMenu from "../../../components/profile/ProfileMenu";
 
 const AlbumPage = () => {
-  let history = useHistory();
   const stateName = useSelector((state) => state.login.users[0].name);
   const userId = useSelector((state) => state.login.users[0].id);
   const [albumState, setAlbumState] = useState([]);
@@ -22,9 +21,6 @@ const AlbumPage = () => {
       .catch((err) => {
         console.log(err);
       });
-    // .finally(() => {
-    //     return
-    // });
   };
   useEffect(() => {
     getAlbumAsync();
