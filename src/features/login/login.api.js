@@ -36,7 +36,7 @@ export const getUserAsync = (username, password) => (dispatch, getState) => {
   } else {
     dispatch({
       type: "ERROR_DATA",
-      payload: { error: true, message: "wrong password!" },
+      payload: { error: true, message: "Wrong Password!" },
     });
   }
 };

@@ -15,6 +15,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         users: action.payload,
+        error: "",
       };
     case "LOGOUT":
       return {
